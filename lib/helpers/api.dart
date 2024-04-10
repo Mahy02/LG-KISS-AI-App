@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-//my api: AIzaSyAn62FAeiVkL0JT_jI0LmZjibiUGrCb3dw
-//kareem's api:
+
 
 ///This is the [Api] class that contains all kind of requests we might need
 ///It has a [get] , [post] requests

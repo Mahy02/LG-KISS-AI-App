@@ -65,12 +65,10 @@ class LgKISSApp extends StatelessWidget {
     return MaterialApp(
       title: 'Discover Animals',
       theme: ThemeData(
-          fontFamily: fontType,
-         ),
+        fontFamily: fontType,
+      ),
       home: const HomeScreen(),
       navigatorKey: navigatorKey,
     );
   }
-  
 }
-

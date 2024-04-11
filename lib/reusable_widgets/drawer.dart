@@ -1,12 +1,13 @@
 import 'package:discoveranimals/constants.dart';
 import 'package:flutter/material.dart';
 
+import 'main_layout.dart';
 import 'navigation_item_drawer.dart';
 
 class DrawerWidget extends StatefulWidget {
-  const DrawerWidget({
-    super.key,
-  });
+  //final bool isDefault;
+
+  const DrawerWidget({super.key});
 
   @override
   State<DrawerWidget> createState() => _DrawerWidgetState();
@@ -17,6 +18,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
   Color connectionColor = Colors.black;
   Color tasksColor = Colors.black;
   Color settingsColor = Colors.black;
+  bool isDefault = true;
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +40,14 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           NavigationItem(
               imagePath: 'assets/images/home.png',
               title: 'Home',
-              color: homeColor,
+              color: isDefault ? AppColors.primary1 : homeColor,
               onPressed: () {
                 setState(() {
                   homeColor = AppColors.primary1;
                   connectionColor = Colors.black;
                   tasksColor = Colors.black;
                   settingsColor = Colors.black;
+                  isDefault = false;
                 });
               }),
           const Divider(
@@ -62,6 +65,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   homeColor = Colors.black;
                   tasksColor = Colors.black;
                   settingsColor = Colors.black;
+                  isDefault = false;
                 });
               }),
           const Divider(
@@ -79,6 +83,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   connectionColor = Colors.black;
                   homeColor = Colors.black;
                   settingsColor = Colors.black;
+                  isDefault = false;
                 });
               }),
           const Divider(
@@ -96,6 +101,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   connectionColor = Colors.black;
                   tasksColor = Colors.black;
                   homeColor = Colors.black;
+                  isDefault = false;
                 });
               }),
           const Divider(

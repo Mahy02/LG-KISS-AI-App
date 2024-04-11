@@ -41,6 +41,7 @@ dependencies:
   provider: ^6.1.2
   path_provider: ^2.1.1
   google_fonts: ^4.0.4
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -70,7 +71,12 @@ flutter:
       - assets/images/settings.png
       - assets/images/lgtasks.png
       - assets/images/home.png
-
+      - assets/images/dog.png
+      - assets/images/dolphin.png
+      - assets/images/giraffe.png
+      - assets/images/tiger.png
+      - assets/images/bear.png
+      - assets/images/cat.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

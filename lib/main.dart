@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:discoveranimals/providers/connection_provider.dart';
+import 'package:discoveranimals/providers/current_view_provider.dart';
 import 'package:discoveranimals/providers/ssh_provider.dart';
-import 'package:discoveranimals/screens/home_screen.dart';
+import 'package:discoveranimals/reusable_widgets/main_layout.dart';
 import 'package:discoveranimals/services/lg_functionalities.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +23,8 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Connectionprovider()),
-        ChangeNotifierProvider(create: (_) => SSHprovider())
+        ChangeNotifierProvider(create: (_) => SSHprovider()),
+        ChangeNotifierProvider(create: (_) => CurrentViewProvider()),
       ],
       child: const LgKISSApp(),
     ),
@@ -67,7 +69,7 @@ class LgKISSApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: fontType,
       ),
-      home: const HomeScreen(),
+      home: const MainLayout(),
       navigatorKey: navigatorKey,
     );
   }

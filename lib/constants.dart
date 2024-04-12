@@ -10,10 +10,10 @@ class AppColors {
   static const Color primary2 = Color(0xFFBC9FE1);
   static const Color primary3 = Color(0xFFD3B4F9);
   static const Color background = Colors.white;
-  static const Color font = Color(0xFF454279);
+  static const Color font = Color.fromARGB(255, 36, 35, 64);
 }
 
 final fontType = GoogleFonts.poppins().fontFamily;
 const double titleSize = 40;
-const double headingSize = 30;
+const double headingSize = 35;
 const double textSize = 25;

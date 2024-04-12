@@ -1,3 +1,4 @@
+import 'package:discoveranimals/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,8 +19,8 @@ class SubText extends StatelessWidget {
       subTextContent,
       style: TextStyle(
           fontSize: fontSize,
-          color: Colors.black,
-          fontFamily: GoogleFonts.montserrat().fontFamily,
+          color: AppColors.font,
+          fontFamily: fontType,
           fontWeight: FontWeight.bold),
     );
   }

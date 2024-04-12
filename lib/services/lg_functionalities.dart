@@ -100,7 +100,6 @@ fi
   /// We used to write sudo reboot  in the terminal, but we need a way to add the password and the LG number too here
   Future<void> reboot() async {
     final pw = _sshData.passwordOrKey;
-    final user = _sshData.username;
 
     final result = await getScreenAmount();
     if (result != null) {
@@ -130,7 +129,6 @@ fi
   /// Shuts down the Liquid Galaxy system.
   Future<void> shutdown() async {
     final pw = _sshData.passwordOrKey;
-    final user = _sshData.username;
 
     final result = await getScreenAmount();
     if (result != null) {
@@ -151,7 +149,6 @@ fi
   /// Setups the Google Earth in slave screens to refresh every 2 seconds.
   Future<void> setRefresh() async {
     final pw = _sshData.passwordOrKey;
-    final user = _sshData.username;
 
     const search = '<href>##LG_PHPIFACE##kml\\/slave_{{slave}}.kml<\\/href>';
     const replace =

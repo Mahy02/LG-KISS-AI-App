@@ -1,7 +1,6 @@
 import 'package:discoveranimals/constants.dart';
 import 'package:flutter/material.dart';
 
-import 'main_layout.dart';
 import 'navigation_item_drawer.dart';
 
 class DrawerWidget extends StatefulWidget {

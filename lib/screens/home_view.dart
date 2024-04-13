@@ -174,51 +174,50 @@ class _HomeViewState extends State<HomeView> {
                               );
                             },
                           ),
-                        
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                LgElevatedButton(
-                                    elevatedButtonContent: 'CONTINUE',
-                                    buttonColor: AppColors.primary2,
-                                    onpressed: () {
-                                      currViewProvider.currentView = 'animal';
-                                      animalProvider.animalChoice = animalName;
-                                    },
-                                    height: 50,
-                                    width: 250,
-                                    fontSize: textSize + 2,
-                                    textColor: AppColors.background,
-                                    isPoly: false),
-                                const SizedBox(
-                                  width: 50,
-                                ),
-                                LgElevatedButton(
-                                    elevatedButtonContent: 'REGENERATE',
-                                    buttonColor: AppColors.primary1,
-                                    onpressed: () async {
-                                      final Uint8List? imageBytes =
-                                          await readFileAsBytes(image!);
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              LgElevatedButton(
+                                  elevatedButtonContent: 'CONTINUE',
+                                  buttonColor: AppColors.primary2,
+                                  onpressed: () {
+                                    currViewProvider.currentView = 'animal';
+                                    animalProvider.animalChoice = animalName;
+                                  },
+                                  height: 50,
+                                  width: 250,
+                                  fontSize: textSize + 2,
+                                  textColor: AppColors.background,
+                                  isPoly: false),
+                              const SizedBox(
+                                width: 50,
+                              ),
+                              LgElevatedButton(
+                                  elevatedButtonContent: 'REGENERATE',
+                                  buttonColor: AppColors.primary1,
+                                  onpressed: () async {
+                                    final Uint8List? imageBytes =
+                                        await readFileAsBytes(image!);
 
-                                      if (imageBytes != null) {
-                                        setState(() {
-                                          _modelResponse = GeminiService()
-                                              .describeImage(imageBytes);
-                                        });
-                                      } else {
-                                        setState(() {
-                                          _modelResponse = Future.value(
-                                              'No animal found in this image, try again!');
-                                        });
-                                      }
-                                    },
-                                    height: 50,
-                                    width: 250,
-                                    fontSize: textSize + 2,
-                                    textColor: AppColors.background,
-                                    isPoly: false),
-                              ],
-                            ),
+                                    if (imageBytes != null) {
+                                      setState(() {
+                                        _modelResponse = GeminiService()
+                                            .describeImage(imageBytes);
+                                      });
+                                    } else {
+                                      setState(() {
+                                        _modelResponse = Future.value(
+                                            'No animal found in this image, try again!');
+                                      });
+                                    }
+                                  },
+                                  height: 50,
+                                  width: 250,
+                                  fontSize: textSize + 2,
+                                  textColor: AppColors.background,
+                                  isPoly: false),
+                            ],
+                          ),
                         ],
                       ),
                     ],

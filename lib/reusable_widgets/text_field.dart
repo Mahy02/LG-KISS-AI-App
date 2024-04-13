@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../constants.dart';
 
@@ -83,7 +82,7 @@ class TextFormFieldWidget extends StatelessWidget {
         decoration: InputDecoration(
           labelText: _label,
           labelStyle: TextStyle(
-            fontSize: headingSize,
+            fontSize: textSize + 4,
             fontFamily: fontType,
             fontWeight: FontWeight.bold,
             color: AppColors.font,

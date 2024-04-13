@@ -1,9 +1,9 @@
 import 'package:discoveranimals/screens/main_view.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 import '../constants.dart';
-import '../providers/current_view_provider.dart';
+
 import 'app_bar_widget.dart';
 import 'drawer.dart';
 import 'gradient_background.dart';
@@ -15,8 +15,7 @@ class MainLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CurrentViewProvider currViewProvider =
-        Provider.of<CurrentViewProvider>(context, listen: false);
+
 
     return Scaffold(
       body: Stack(
@@ -33,7 +32,7 @@ class MainLayout extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   color: AppColors.background),
-              //child: currViewProvider.currentView ,
+              
               child: const MainView(),
             ),
           ),

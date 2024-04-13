@@ -82,6 +82,10 @@ flutter:
       - assets/images/tiger.png
       - assets/images/bear.png
       - assets/images/cat.png
+      - assets/images/reboot2.png
+      - assets/images/clear.png
+      - assets/images/relaunch.png
+      - assets/images/shutdown.png
       - .env
 
 

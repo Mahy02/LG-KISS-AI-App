@@ -1,5 +1,7 @@
 import 'package:discoveranimals/constants.dart';
+import 'package:discoveranimals/providers/current_view_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'navigation_item_drawer.dart';
 
@@ -21,6 +23,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
   @override
   Widget build(BuildContext context) {
+    CurrentViewProvider currViewProvider =
+        Provider.of<CurrentViewProvider>(context, listen: false);
     return Positioned(
       top: 100,
       bottom: 30,
@@ -47,6 +51,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   tasksColor = Colors.black;
                   settingsColor = Colors.black;
                   isDefault = false;
+                  currViewProvider.currentView = 'home';
                 });
               }),
           const Divider(
@@ -65,6 +70,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   tasksColor = Colors.black;
                   settingsColor = Colors.black;
                   isDefault = false;
+                  currViewProvider.currentView = 'connection';
                 });
               }),
           const Divider(
@@ -83,6 +89,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   homeColor = Colors.black;
                   settingsColor = Colors.black;
                   isDefault = false;
+                  currViewProvider.currentView = 'tasks';
                 });
               }),
           const Divider(
@@ -101,6 +108,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   tasksColor = Colors.black;
                   homeColor = Colors.black;
                   isDefault = false;
+                  currViewProvider.currentView = 'settings';
                 });
               }),
           const Divider(

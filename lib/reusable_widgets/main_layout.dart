@@ -1,3 +1,4 @@
+import 'package:discoveranimals/screens/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,7 @@ class MainLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     CurrentViewProvider currViewProvider =
+    CurrentViewProvider currViewProvider =
         Provider.of<CurrentViewProvider>(context, listen: false);
 
     return Scaffold(
@@ -32,7 +33,8 @@ class MainLayout extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   color: AppColors.background),
-                  child: currViewProvider.currentView ,
+              //child: currViewProvider.currentView ,
+              child: const MainView(),
             ),
           ),
         ],

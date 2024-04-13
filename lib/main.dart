@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:discoveranimals/providers/animal_provider.dart';
 import 'package:discoveranimals/providers/connection_provider.dart';
 import 'package:discoveranimals/providers/current_view_provider.dart';
 import 'package:discoveranimals/providers/ssh_provider.dart';
@@ -28,6 +29,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => Connectionprovider()),
         ChangeNotifierProvider(create: (_) => SSHprovider()),
         ChangeNotifierProvider(create: (_) => CurrentViewProvider()),
+        ChangeNotifierProvider(create: (_) => AnimalProvider()),
       ],
       child: const LgKISSApp(),
     ),

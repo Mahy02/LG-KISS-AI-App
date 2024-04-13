@@ -1,15 +1,14 @@
+
+
 import 'package:flutter/material.dart';
 
-import '../screens/home_view.dart';
-
-
 class CurrentViewProvider extends ChangeNotifier {
-  Widget _currentView = const HomeView(); 
+  String _currentView = 'home';
 
-  Widget get currentView => _currentView;
+  String get currentView => _currentView;
 
-  set currentView(Widget view) {
+  set currentView(String view) {
     _currentView = view;
-    notifyListeners(); 
+    notifyListeners();
   }
 }

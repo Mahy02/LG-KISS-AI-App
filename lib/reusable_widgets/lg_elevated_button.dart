@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:discoveranimals/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 class LgElevatedButton extends StatelessWidget {
   final String elevatedButtonContent;
   final Color buttonColor;
+  final Color textColor;
   final Function onpressed;
   final double height;
   final bool isPoly;
@@ -29,6 +31,7 @@ class LgElevatedButton extends StatelessWidget {
     required this.height,
     required this.width,
     required this.fontSize,
+    required this.textColor,
     this.imagePath,
     this.imageHeight,
     this.imageWidth,
@@ -48,12 +51,11 @@ class LgElevatedButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: buttonColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(30),
           ),
         ),
         child: Stack(
           children: [
-           
             (imagePath != null && imagePath != '')
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -101,10 +103,10 @@ class LgElevatedButton extends StatelessWidget {
                       elevatedButtonContent,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: fontSize,
-                        fontFamily: GoogleFonts.montserrat().fontFamily,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          fontSize: fontSize,
+                          fontFamily: fontType,
+                          fontWeight: FontWeight.bold,
+                          color: textColor),
                     ),
                   ),
           ],

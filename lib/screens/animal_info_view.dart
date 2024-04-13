@@ -19,6 +19,7 @@ class AnimalInfoView extends StatefulWidget {
 class _AnimalInfoViewState extends State<AnimalInfoView> {
   late Future<AnimalInfo> _modelResponse;
   late Future<String?> _model2Response;
+  // late Stream<String?> _streamResponse;
   bool isPressed = false;
 
   @override
@@ -128,6 +129,8 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
                 setState(() {
                   isPressed = true;
                 });
+                // _streamResponse = GeminiService().generateAnswerAboutAnimals(
+                //     _userPrompt.text, widget.animal);
 
                 _model2Response = GeminiService().generateAnswerAboutAnimals(
                     _userPrompt.text, widget.animal);
@@ -141,6 +144,18 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
             height: MediaQuery.sizeOf(context).height * 0.05,
           ),
           if (isPressed)
+            // StreamBuilder<String?>(
+            //   stream: _streamResponse,
+            //   builder: (context, snapshot) {
+            //     return AnimatedSwitcher(
+            //       duration: const Duration(milliseconds: 300),
+            //       child: snapshot.connectionState == ConnectionState.waiting
+            //           ? const Center(
+            //               child: CircularProgressIndicator.adaptive())
+            //           : _buildResponseQueryWidget(snapshot),
+            //     );
+            //   },
+            // ),
             FutureBuilder<String?>(
               future: _model2Response,
               builder: (context, snapshot) {
@@ -271,7 +286,7 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
 
     return SizedBox(
       width: MediaQuery.sizeOf(context).width * 0.8,
-      height: MediaQuery.sizeOf(context).height * 0.3,
+      //height: MediaQuery.sizeOf(context).height * 0.3,
       child: Container(
         padding: const EdgeInsets.all(20.0),
         decoration: BoxDecoration(

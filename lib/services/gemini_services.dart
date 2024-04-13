@@ -1,7 +1,10 @@
+import 'dart:typed_data';
+
 import 'package:discoveranimals/models/animal_model.dart';
 import 'package:discoveranimals/models/location_model.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:mime/mime.dart';
 
 class GeminiService {
   final model = GenerativeModel(
@@ -90,6 +93,23 @@ Coordinates:
     final response = await model.generateContent([content]);
 
     return response.text;
+  }
+  // Stream<String?> generateAnswerAboutAnimals(
+  //     String inputPrompt, String animal) {
+  //   String prompt = inputPrompt;
+  //   final content = Content.text(prompt);
+  //   return model.generateContentStream([content]).map((event) => event.text);
+  // }
+
+  Future<String> describeImage(Uint8List imageInBytes) async {
+    final mimeType =
+        lookupMimeType('image', headerBytes: imageInBytes) ?? 'image/*';
+    final imageContent = DataPart(mimeType, imageInBytes);
+    final describeImagePrompt = TextPart(
+        'Extract the animal name from this image in this specific format: "The animal in the image is {animal_name}".');
+    final prompt = Content.multi([describeImagePrompt, imageContent]);
+    final response = await visionModel.generateContent([prompt]);
+    return response.text ?? 'Could not find animal in this image, try again!';
   }
 }
 

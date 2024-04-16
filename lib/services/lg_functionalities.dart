@@ -351,6 +351,21 @@ fi
     }
   }
 
+    Future<void> sendKmlPlacemarks(String kml, String placemarkName) async {
+    final fileName = '$placemarkName.kml';
+    try {
+      final kmlFile = await _fileService.createFile(fileName, kml);
+
+      await _sshData.uploadKml(kmlFile, fileName);
+
+      await _sshData
+          .execute('echo "\n$_url/$fileName" >> /var/www/html/kmls.txt');
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
+  }
+
   /// Clears all `KMLs` from the Google Earth. The [keepLogos] keeps the logos
   /// after clearing (default to `true`).
   Future<void> clearKml({bool keepLogos = true}) async {

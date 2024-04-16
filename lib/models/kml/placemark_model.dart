@@ -1,4 +1,3 @@
-
 import 'line_model.dart';
 import 'look_at_model.dart';
 import 'point_model.dart';
@@ -8,6 +7,9 @@ import 'tour_model.dart';
 class PlacemarkModel {
   /// Property that defines the placemark `id`.
   String id;
+
+  ///property that defines the style `id`
+  String? styleId;
 
   /// Property that defines the placemark `name`.
   String name;
@@ -121,6 +123,31 @@ class PlacemarkModel {
     ${tour != null ? tour!.tag : ''}
   ''';
 
+//https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/animalPin.png?raw=true
+  String get styleTag => '''
+
+<Style id="$styleId">
+    <IconStyle id="mystyle">
+      <Icon>
+        <href>$icon</href>
+        <scale>$scale</scale>
+      </Icon>
+    </IconStyle>
+  </Style>
+
+''';
+
+  String get placemarkOnlyTag => '''
+<Placemark id="$id">
+    <name>$name</name>
+    <description>
+    $description
+    </description>
+    <styleUrl>#$styleId</styleUrl>
+     ${point?.tag}
+  </Placemark>
+''';
+
   String get pinOnlyTag => '''
     <Placemark>
       <Style id="${id}_icon">
@@ -136,8 +163,6 @@ class PlacemarkModel {
     </Placemark>
    
   ''';
-
-  
 
   String get orbitTag => '''
     <Placemark>

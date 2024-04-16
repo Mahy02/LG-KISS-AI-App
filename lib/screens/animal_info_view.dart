@@ -6,6 +6,8 @@ import 'package:discoveranimals/models/kml/KMLModel.dart';
 import 'package:discoveranimals/models/kml/look_at_model.dart';
 import 'package:discoveranimals/models/kml/orbit_model.dart';
 import 'package:discoveranimals/models/kml/placemark_model.dart';
+import 'package:discoveranimals/models/kml/point_model.dart';
+import 'package:discoveranimals/models/location_model.dart';
 import 'package:discoveranimals/providers/ssh_provider.dart';
 import 'package:discoveranimals/reusable_widgets/dialog_builder.dart';
 import 'package:discoveranimals/reusable_widgets/lg_elevated_button.dart';
@@ -53,13 +55,43 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
 
   final _userPrompt = TextEditingController();
 
+  // _viewPlacemarks(List<PlacemarkModel> placemarks) async {
+  //   final sshData = Provider.of<SSHprovider>(context, listen: false);
+  //   // LookAtModel lookAtObj = LookAtModel(
+  //   //   longitude: -45.4518936,
+  //   //   latitude: 0.0000101,
+  //   //   range: '31231212.86',
+  //   //   tilt: '0',
+  //   //   altitude: 50000.1097385,
+  //   //   heading: '0',
+  //   //   altitudeMode: 'relativeToSeaFloor',
+  //   // );
+  //   // await LgService(sshData).flyTo(lookAtObj);
+  //   String content = '';
+  //   content += placemarks[0].styleTag;
+  //   for (PlacemarkModel placemark in placemarks) {
+  //     content += placemark.placemarkOnlyTag;
+  //   }
+  //   final kmlPlacemark = KMLModel(
+  //     name: 'Animal-pins',
+  //     content: content,
+  //   );
+
+  //   try {
+  //     await LgService(sshData)
+  //         .sendKmlPlacemarks(kmlPlacemark.body, 'AnimalPins');
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
+
   _buildLocationBallon(
       String animalName, String cityName, String countryName) async {
     final sshData = Provider.of<SSHprovider>(context, listen: false);
 
     final placemark = PlacemarkModel(
-      id: '1',
-      name: animalName,
+      id: ' $animalName-query-facts',
+      name: ' $animalName-query-facts',
       balloonContent: '''
     <div style="text-align:center;">
       <b><font size="+3"> 'Discover more about $animalName' <font color="#5D5D5D"></font></font></b>
@@ -70,7 +102,7 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
     ''',
     );
     final kmlBalloon = KMLModel(
-      name: '$animalName-balloon',
+      name: '$animalName-query-balloon',
       content: placemark.balloonOnlyTag,
     );
 
@@ -90,8 +122,8 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
     final sshData = Provider.of<SSHprovider>(context, listen: false);
 
     final placemark = PlacemarkModel(
-      id: '1',
-      name: animalName,
+      id: '$animalName-fun-facts',
+      name: '$animalName-fun-facts',
       balloonContent: '''
     <div style="text-align:center;">
       <b><font size="+3"> 'Discover more about $animalName' <font color="#5D5D5D"></font></font></b>
@@ -106,7 +138,7 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
     ''',
     );
     final kmlBalloon = KMLModel(
-      name: '$animalName-balloon',
+      name: '$animalName-fun-facts-balloon',
       content: placemark.balloonOnlyTag,
     );
 
@@ -126,8 +158,8 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
     final sshData = Provider.of<SSHprovider>(context, listen: false);
 
     final placemark = PlacemarkModel(
-      id: '1',
-      name: animalName,
+      id: '$animalName-initial',
+      name: '$animalName-initial',
       balloonContent: '''
     <div style="text-align:center;">
       <b><font size="+3"> 'Discover more about $animalName' <font color="#5D5D5D"></font></font></b>
@@ -140,7 +172,7 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
     ''',
     );
     final kmlBalloon = KMLModel(
-      name: '$animalName-balloon',
+      name: '$animalName-initial-balloon',
       content: placemark.balloonOnlyTag,
     );
 
@@ -472,6 +504,26 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
       final sshData = Provider.of<SSHprovider>(context, listen: false);
 
       if (sshData.client != null) {
+        // List<PlacemarkModel> placemarks = [];
+        // for (int i = 0; i < animalInfo.locations.length; i++) {
+        //   LocationModel location = animalInfo.locations[i];
+        //   String icon =
+        //       'https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/animalPin.png?raw=true';
+        //   PlacemarkModel placemark = PlacemarkModel(
+        //       id: i.toString(),
+        //       name: location.city,
+        //       icon: icon,
+        //       scale: 5,
+        //       point: PointModel(
+        //           lat: location.latitude,
+        //           lng: location.longitude,
+        //           altitude: 1000),
+        //       description:
+        //           '${animalInfo.animalName} Pin at ${location.city} , ${location.country}');
+        //   placemarks.add(placemark);
+        // }
+        // _viewPlacemarks(placemarks);
+
         _buildFunFactsBallon(animalInfo.animalName, animalInfo.funFacts);
       }
     } catch (e) {

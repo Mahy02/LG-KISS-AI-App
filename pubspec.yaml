@@ -46,6 +46,7 @@ dependencies:
   animated_text_kit: ^4.2.2
   mime: ^1.0.5
   image_picker: ^1.0.8
+  geocoding: ^3.0.0
 
 dev_dependencies:
   flutter_lints: ^3.0.2
@@ -86,6 +87,7 @@ flutter:
       - assets/images/clear.png
       - assets/images/relaunch.png
       - assets/images/shutdown.png
+      - assets/images/animals.png
       - .env
 
 

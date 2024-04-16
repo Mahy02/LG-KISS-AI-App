@@ -5,15 +5,20 @@ import '../constants.dart';
 import '../providers/connection_provider.dart';
 import 'conncetion_indicator.dart';
 
-class AppBarWidget extends StatelessWidget {
+class AppBarWidget extends StatefulWidget {
   const AppBarWidget({
     super.key,
   });
 
   @override
+  State<AppBarWidget> createState() => _AppBarWidgetState();
+}
+
+class _AppBarWidgetState extends State<AppBarWidget> {
+  @override
   Widget build(BuildContext context) {
-    Connectionprovider connection =
-        Provider.of<Connectionprovider>(context, listen: false);
+    // Connectionprovider connection =
+    //     Provider.of<Connectionprovider>(context, listen: false);
     return Positioned(
         top: 30,
         left: 50,
@@ -28,9 +33,11 @@ class AppBarWidget extends StatelessWidget {
                     fontSize: titleSize,
                     fontWeight: FontWeight.bold,
                     color: AppColors.background)),
-            ConnectionIndicator(
-              isConnected: connection.isConnected,
-            ),
+            Consumer<Connectionprovider>(builder: (context, connection, _) {
+              return ConnectionIndicator(
+                isConnected: connection.isConnected,
+              );
+            }),
           ],
         ));
   }

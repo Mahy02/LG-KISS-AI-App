@@ -9,10 +9,10 @@ import 'package:discoveranimals/services/lg_functionalities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
-
 import 'constants.dart';
 import 'helpers/lg_connection_shared_pref.dart';
 import 'models/ssh_model.dart';
+
 
 void main() async {
   /// Initialize the app

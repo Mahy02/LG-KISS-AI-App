@@ -88,6 +88,7 @@ flutter:
       - assets/images/relaunch.png
       - assets/images/shutdown.png
       - assets/images/animals.png
+      - assets/images/animalPin.png
       - .env
 
 

@@ -44,9 +44,6 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
 
       if (sshData.client != null) {
         _buildInitialsBalloon(widget.animal);
-      } else {
-        dialogBuilder(context, 'NOT connected to LG !! \n Please Connect to LG',
-            true, 'OK', null);
       }
     } catch (e) {
       // ignore: avoid_print
@@ -56,26 +53,24 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
 
   final _userPrompt = TextEditingController();
 
-  _buildLocationBallon() async {
+  _buildLocationBallon(
+      String animalName, String cityName, String countryName) async {
     final sshData = Provider.of<SSHprovider>(context, listen: false);
 
     final placemark = PlacemarkModel(
       id: '1',
-      name: 'Discover more about',
+      name: animalName,
       balloonContent: '''
     <div style="text-align:center;">
-      <b><font size="+3"> 'Cairo, Egypt' <font color="#5D5D5D"></font></font></b>
+      <b><font size="+3"> 'Discover more about $animalName' <font color="#5D5D5D"></font></font></b>
       </div>
       <br/><br/>
-      <div style="text-align:center;">
-      <img src="https://github.com/Mahy02/HAPIS-Refurbishment--Humanitarian-Aid-Panoramic-Interactive-System-/blob/week4/hapis/assets/images/cityBallon.png?raw=true" style="display: block; margin: auto; width: 150px; height: 100px;"/><br/><br/>
-     </div>
-      <b>MAHINOUR ELSARKY</b>
+      <p>$animalName can be found in $cityName , $countryName</p>
       <br/>
     ''',
     );
     final kmlBalloon = KMLModel(
-      name: 'City-balloon',
+      name: '$animalName-balloon',
       content: placemark.balloonOnlyTag,
     );
 
@@ -102,18 +97,16 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
       <b><font size="+3"> 'Discover more about $animalName' <font color="#5D5D5D"></font></font></b>
       </div>
       <br/><br/>
-      <div style="text-align:center;">
-      <img src="https://github.com/Mahy02/HAPIS-Refurbishment--Humanitarian-Aid-Panoramic-Interactive-System-/blob/week4/hapis/assets/images/cityBallon.png?raw=true" style="display: block; margin: auto; width: 150px; height: 100px;"/><br/><br/>
-     </div>
      <div style="text-align:center;">
-      <b><font size="+1"> 'FUN FACTS' <font color="#5D5D5D"></font></font></b>
+      <b><font size="+2"> 'FUN FACTS' <font color="#5D5D5D"></font></font></b>
       </div>
-      <b>$funFacts</b>
+      <br/>
+      <p>${funFacts.split('\n\n').join('<br/><br/>')}</p>
       <br/>
     ''',
     );
     final kmlBalloon = KMLModel(
-      name: 'City-balloon',
+      name: '$animalName-balloon',
       content: placemark.balloonOnlyTag,
     );
 
@@ -141,13 +134,13 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
       </div>
       <br/><br/>
       <div style="text-align:center;">
-      <img src="https://lafeber.com/pet-birds/bird-people-share-what-do-you-wish-you-knew-before-getting-a-parrot/" style="display: block; margin: auto; width: 150px; height: 100px;"/><br/><br/>
+      <img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/animalsBalloon.png?raw=true" style="display: block; margin: auto; width: 150px; height: 100px;"/><br/><br/>
      </div>
       <br/>
     ''',
     );
     final kmlBalloon = KMLModel(
-      name: 'City-balloon',
+      name: '$animalName-balloon',
       content: placemark.balloonOnlyTag,
     );
 
@@ -163,27 +156,27 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
     }
   }
 
-  _buildAnswersBallon() async {
+  _buildAnswersBallon(String animalName, String response, String query) async {
     final sshData = Provider.of<SSHprovider>(context, listen: false);
 
     final placemark = PlacemarkModel(
       id: '1',
-      name: 'Cairo, Egypt',
+      name: animalName,
       balloonContent: '''
-    <div style="text-align:center;">
-      <b><font size="+3"> 'Cairo, Egypt' <font color="#5D5D5D"></font></font></b>
+     <div style="text-align:center;">
+      <b><font size="+3"> 'Discover more about $animalName' <font color="#5D5D5D"></font></font></b>
       </div>
       <br/><br/>
-      <div style="text-align:center;">
-      <img src="https://github.com/Mahy02/HAPIS-Refurbishment--Humanitarian-Aid-Panoramic-Interactive-System-/blob/week4/hapis/assets/images/cityBallon.png?raw=true" style="display: block; margin: auto; width: 150px; height: 100px;"/><br/><br/>
-     </div>
-      <div style="text-align:center;">
-      <b><font size="+3"> 'FUN FACTS' <font color="#5D5D5D"></font></font></b>
-
+     <div style="text-align:center;">
+      <b><font size="+2"> '$query' <font color="#5D5D5D"></font></font></b>
+      </div>
+      <br/>
+      <p>$response</p>
+      <br/>
     ''',
     );
     final kmlBalloon = KMLModel(
-      name: 'City-balloon',
+      name: '$animalName-balloon',
       content: placemark.balloonOnlyTag,
     );
 
@@ -380,6 +373,8 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
             ///checking the connection status first
             if (sshData.client != null) {
               //await LgService(sshData).clearKml();
+              _buildLocationBallon(
+                  animalInfo.animalName, location.city, location.country);
 
               LookAtModel lookAtObj = LookAtModel(
                 longitude: longitude,
@@ -473,26 +468,49 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
     }
 
     final animalInfo = snapshot.data!;
+    try {
+      final sshData = Provider.of<SSHprovider>(context, listen: false);
 
-    return SizedBox(
-      width: MediaQuery.sizeOf(context).width * 0.5,
-      height: MediaQuery.sizeOf(context).height * 0.3,
-      child: Container(
-        padding: const EdgeInsets.all(20.0),
-        decoration: BoxDecoration(
-          border: Border.all(color: AppColors.primary1),
-          borderRadius: BorderRadius.circular(30.0),
-        ),
-        child: SingleChildScrollView(
-          child: AnimatedTextKit(
-            isRepeatingAnimation: false,
-            animatedTexts: [
-              TypewriterAnimatedText(animalInfo.funFacts,
-                  textStyle: TextStyle(
-                      fontFamily: fontType,
-                      fontSize: textSize,
-                      color: Colors.black)),
-            ],
+      if (sshData.client != null) {
+        _buildFunFactsBallon(animalInfo.animalName, animalInfo.funFacts);
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
+    return GestureDetector(
+      onTap: () async {
+        try {
+          final sshData = Provider.of<SSHprovider>(context, listen: false);
+
+          if (sshData.client != null) {
+            _buildFunFactsBallon(animalInfo.animalName, animalInfo.funFacts);
+          }
+        } catch (e) {
+          // ignore: avoid_print
+          print(e);
+        }
+      },
+      child: SizedBox(
+        width: MediaQuery.sizeOf(context).width * 0.5,
+        height: MediaQuery.sizeOf(context).height * 0.3,
+        child: Container(
+          padding: const EdgeInsets.all(20.0),
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.primary1),
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          child: SingleChildScrollView(
+            child: AnimatedTextKit(
+              isRepeatingAnimation: false,
+              animatedTexts: [
+                TypewriterAnimatedText(animalInfo.funFacts,
+                    textStyle: TextStyle(
+                        fontFamily: fontType,
+                        fontSize: textSize,
+                        color: Colors.black)),
+              ],
+            ),
           ),
         ),
       ),
@@ -511,13 +529,24 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
       return const Text('The response will be showed here');
     }
 
+    try {
+      final sshData = Provider.of<SSHprovider>(context, listen: false);
+
+      if (sshData.client != null) {
+        _buildAnswersBallon(widget.animal, snapshot.data!, _userPrompt.text);
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
+
     return SizedBox(
       width: MediaQuery.sizeOf(context).width * 0.8,
       //height: MediaQuery.sizeOf(context).height * 0.3,
       child: Container(
         padding: const EdgeInsets.all(20.0),
         decoration: BoxDecoration(
-          color: AppColors.primary3,
+          color: AppColors.primary2,
           border: Border.all(color: AppColors.primary1),
           borderRadius: BorderRadius.circular(30.0),
         ),

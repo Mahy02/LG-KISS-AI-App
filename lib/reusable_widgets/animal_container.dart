@@ -32,7 +32,7 @@ class AnimalContainer extends StatelessWidget {
               false,
               'OK', () {
             currViewProvider.currentView = 'settings';
-          });
+          }, () {});
         } else {
           currViewProvider.currentView = 'animal';
           animalProvider.animalChoice = animalName;

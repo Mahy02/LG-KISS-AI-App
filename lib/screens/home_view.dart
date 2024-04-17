@@ -113,7 +113,7 @@ class _HomeViewState extends State<HomeView> {
                             false,
                             'OK', () {
                           currViewProvider.currentView = 'settings';
-                        });
+                        }, () {});
                       } else {
                         final animal = _userPrompt.text;
                         currViewProvider.currentView = 'animal';
@@ -153,7 +153,7 @@ class _HomeViewState extends State<HomeView> {
                                 false,
                                 'OK', () {
                               currViewProvider.currentView = 'settings';
-                            });
+                            }, () {});
                           } else {
                             _handleUploadImageButtonTap()
                                 .then((imageFile) async {
@@ -261,7 +261,7 @@ class _HomeViewState extends State<HomeView> {
                                 false,
                                 'OK', () {
                               currViewProvider.currentView = 'settings';
-                            });
+                            }, () {});
                           } else {
                             _handleUploadImageButtonTap()
                                 .then((imageFile) async {

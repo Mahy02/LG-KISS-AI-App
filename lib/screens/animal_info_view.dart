@@ -554,7 +554,7 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
                   'NOT connected to LG !! \n Please Connect to LG',
                   true,
                   'OK',
-                  null);
+                  null, () {});
             }
           },
           child: Container(

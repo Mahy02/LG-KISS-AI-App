@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:discoveranimals/helpers/api_key_shared_pref.dart';
+import 'package:discoveranimals/helpers/colors_shared_pref.dart';
 import 'package:discoveranimals/providers/animal_provider.dart';
 import 'package:discoveranimals/providers/connection_provider.dart';
 import 'package:discoveranimals/providers/current_view_provider.dart';
@@ -14,7 +15,6 @@ import 'constants.dart';
 import 'helpers/lg_connection_shared_pref.dart';
 import 'models/ssh_model.dart';
 
-
 void main() async {
   /// Initialize the app
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +22,7 @@ void main() async {
   /// Initialize shared preferences for LG connection
   await LgConnectionSharedPref.init();
   await ApiKeySharedPref.init();
+  await ColorsSharedPref.init();
 
   await dotenv.load(fileName: ".env");
 

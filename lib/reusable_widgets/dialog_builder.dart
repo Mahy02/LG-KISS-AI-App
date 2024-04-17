@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 
-Future<void> dialogBuilder(BuildContext context, String dialogMessage,
-    bool isOne, String confirmMessage, VoidCallback? onConfirm) {
+Future<void> dialogBuilder(
+    BuildContext context,
+    String dialogMessage,
+    bool isOne,
+    String confirmMessage,
+    VoidCallback? onConfirm,
+    VoidCallback? onCancel) {
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
@@ -19,6 +24,14 @@ Future<void> dialogBuilder(BuildContext context, String dialogMessage,
                   style: TextStyle(fontSize: 20, color: AppColors.lgColor2)),
               onPressed: () {
                 Navigator.of(context).pop();
+                if (onCancel != null) {
+                  try {
+                    onCancel();
+                  } catch (e) {
+                    // ignore: avoid_print
+                    print(e);
+                  }
+                }
               },
             ),
           TextButton(
@@ -26,7 +39,7 @@ Future<void> dialogBuilder(BuildContext context, String dialogMessage,
                 Navigator.of(context).pop();
                 if (onConfirm != null) {
                   try {
-                     onConfirm();
+                    onConfirm();
                   } catch (e) {
                     // ignore: avoid_print
                     print(e);

@@ -55,7 +55,7 @@ class _LGTasksViewState extends State<LGTasksView> {
                     dialogBuilder(context, 'Are you sure you want to Reboot?',
                         false, 'YES', () {
                       LgService(sshData).reboot();
-                    });
+                    }, () {});
                   } else {
                     ///Showing error message
 
@@ -64,6 +64,7 @@ class _LGTasksViewState extends State<LGTasksView> {
                         'NOT connected to LG !! \n Please Connect to LG',
                         true,
                         'OK',
+                        null,
                         null);
                   }
                 }),
@@ -98,7 +99,7 @@ class _LGTasksViewState extends State<LGTasksView> {
                         // ignore: avoid_print
                         print(e);
                       }
-                    });
+                    }, () {});
                   } else {
                     ///Showing error message
 
@@ -107,6 +108,7 @@ class _LGTasksViewState extends State<LGTasksView> {
                         'NOT connected to LG !! \n Please Connect to LG',
                         true,
                         'OK',
+                        null,
                         null);
                   }
                 }),
@@ -138,13 +140,14 @@ class _LGTasksViewState extends State<LGTasksView> {
                     dialogBuilder(context, 'Are you sure you want to Relaunch?',
                         false, 'YES', () {
                       LgService(sshData).relaunch();
-                    });
+                    }, () {});
                   } else {
                     dialogBuilder(
                         context,
                         'NOT connected to LG !! \n Please Connect to LG',
                         true,
                         'OK',
+                        null,
                         null);
                   }
                 }),
@@ -173,6 +176,7 @@ class _LGTasksViewState extends State<LGTasksView> {
                         'NOT connected to LG !! \n Please Connect to LG',
                         true,
                         'OK',
+                        null,
                         null);
                   }
                 }),

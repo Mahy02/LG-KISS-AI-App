@@ -170,7 +170,7 @@ class _ConnectionViewState extends State<ConnectionView> {
                           connection.isConnected = false;
 
                           // ignore: use_build_context_synchronously
-                          dialogBuilder(context, result!, true, 'OK', null);
+                          dialogBuilder(context, result!, true, 'OK', null, null);
                         }
 
                         ///stop the loading process by setting `isloading` to false

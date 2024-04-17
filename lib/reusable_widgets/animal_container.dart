@@ -1,6 +1,8 @@
 import 'package:discoveranimals/constants.dart';
+import 'package:discoveranimals/helpers/api_key_shared_pref.dart';
 import 'package:discoveranimals/providers/animal_provider.dart';
 import 'package:discoveranimals/providers/current_view_provider.dart';
+import 'package:discoveranimals/reusable_widgets/dialog_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,8 +24,19 @@ class AnimalContainer extends StatelessWidget {
         Provider.of<AnimalProvider>(context, listen: false);
     return GestureDetector(
       onTap: () {
-        currViewProvider.currentView = 'animal';
-        animalProvider.animalChoice = animalName;
+        if (ApiKeySharedPref.getAPIKey() == '' ||
+            ApiKeySharedPref.getAPIKey() == null) {
+          dialogBuilder(
+              context,
+              'Please enter your Gemini API key to be able to continue',
+              false,
+              'OK', () {
+            currViewProvider.currentView = 'settings';
+          });
+        } else {
+          currViewProvider.currentView = 'animal';
+          animalProvider.animalChoice = animalName;
+        }
       },
       child: Container(
         width: 400,

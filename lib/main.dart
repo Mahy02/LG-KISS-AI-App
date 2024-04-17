@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:discoveranimals/helpers/api_key_shared_pref.dart';
 import 'package:discoveranimals/providers/animal_provider.dart';
 import 'package:discoveranimals/providers/connection_provider.dart';
 import 'package:discoveranimals/providers/current_view_provider.dart';
@@ -20,6 +21,7 @@ void main() async {
 
   /// Initialize shared preferences for LG connection
   await LgConnectionSharedPref.init();
+  await ApiKeySharedPref.init();
 
   await dotenv.load(fileName: ".env");
 

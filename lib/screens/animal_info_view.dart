@@ -55,35 +55,25 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
 
   final _userPrompt = TextEditingController();
 
-  // _viewPlacemarks(List<PlacemarkModel> placemarks) async {
-  //   final sshData = Provider.of<SSHprovider>(context, listen: false);
-  //   // LookAtModel lookAtObj = LookAtModel(
-  //   //   longitude: -45.4518936,
-  //   //   latitude: 0.0000101,
-  //   //   range: '31231212.86',
-  //   //   tilt: '0',
-  //   //   altitude: 50000.1097385,
-  //   //   heading: '0',
-  //   //   altitudeMode: 'relativeToSeaFloor',
-  //   // );
-  //   // await LgService(sshData).flyTo(lookAtObj);
-  //   String content = '';
-  //   content += placemarks[0].styleTag;
-  //   for (PlacemarkModel placemark in placemarks) {
-  //     content += placemark.placemarkOnlyTag;
-  //   }
-  //   final kmlPlacemark = KMLModel(
-  //     name: 'Animal-pins',
-  //     content: content,
-  //   );
+  _viewPlacemarks(List<PlacemarkModel> placemarks) async {
+    final sshData = Provider.of<SSHprovider>(context, listen: false);
+    String content = '';
+    content += placemarks[0].styleTag;
+    for (PlacemarkModel placemark in placemarks) {
+      content += placemark.placemarkOnlyTag;
+    }
+    final kmlPlacemark = KMLModel(
+      name: 'Animal-pins',
+      content: content,
+    );
 
-  //   try {
-  //     await LgService(sshData)
-  //         .sendKmlPlacemarks(kmlPlacemark.body, 'AnimalPins');
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
+    try {
+      await LgService(sshData)
+          .sendKmlPlacemarks(kmlPlacemark.body, 'AnimalPins');
+    } catch (e) {
+      print(e);
+    }
+  }
 
   _buildLocationBallon(
       String animalName, String cityName, String countryName) async {
@@ -141,16 +131,29 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
       name: '$animalName-fun-facts-balloon',
       content: placemark.balloonOnlyTag,
     );
-
-    try {
-      /// sending kml to slave where we send to `balloon screen` and send the `kml balloon ` body
-      await LgService(sshData).sendKMLToSlave(
-        LgService(sshData).balloonScreen,
-        kmlBalloon.body,
+    if (sshData.client != null) {
+      LookAtModel lookAtObj = LookAtModel(
+        longitude: -45.4518936,
+        latitude: 0.0000101,
+        range: '31231212.86',
+        tilt: '0',
+        altitude: 50000.1097385,
+        heading: '0',
+        altitudeMode: 'relativeToSeaFloor',
       );
-    } catch (e) {
-      // ignore: avoid_print
-      print(e);
+
+      try {
+        await LgService(sshData).flyTo(lookAtObj);
+
+        /// sending kml to slave where we send to `balloon screen` and send the `kml balloon ` body
+        await LgService(sshData).sendKMLToSlave(
+          LgService(sshData).balloonScreen,
+          kmlBalloon.body,
+        );
+      } catch (e) {
+        // ignore: avoid_print
+        print(e);
+      }
     }
   }
 
@@ -176,15 +179,29 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
       content: placemark.balloonOnlyTag,
     );
 
-    try {
-      /// sending kml to slave where we send to `balloon screen` and send the `kml balloon ` body
-      await LgService(sshData).sendKMLToSlave(
-        LgService(sshData).balloonScreen,
-        kmlBalloon.body,
+    if (sshData.client != null) {
+      LookAtModel lookAtObj = LookAtModel(
+        longitude: -45.4518936,
+        latitude: 0.0000101,
+        range: '31231212.86',
+        tilt: '0',
+        altitude: 50000.1097385,
+        heading: '0',
+        altitudeMode: 'relativeToSeaFloor',
       );
-    } catch (e) {
-      // ignore: avoid_print
-      print(e);
+
+      try {
+        await LgService(sshData).flyTo(lookAtObj);
+
+        /// sending kml to slave where we send to `balloon screen` and send the `kml balloon ` body
+        await LgService(sshData).sendKMLToSlave(
+          LgService(sshData).balloonScreen,
+          kmlBalloon.body,
+        );
+      } catch (e) {
+        // ignore: avoid_print
+        print(e);
+      }
     }
   }
 
@@ -212,15 +229,29 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
       content: placemark.balloonOnlyTag,
     );
 
-    try {
-      /// sending kml to slave where we send to `balloon screen` and send the `kml balloon ` body
-      await LgService(sshData).sendKMLToSlave(
-        LgService(sshData).balloonScreen,
-        kmlBalloon.body,
+    if (sshData.client != null) {
+      LookAtModel lookAtObj = LookAtModel(
+        longitude: -45.4518936,
+        latitude: 0.0000101,
+        range: '31231212.86',
+        tilt: '0',
+        altitude: 50000.1097385,
+        heading: '0',
+        altitudeMode: 'relativeToSeaFloor',
       );
-    } catch (e) {
-      // ignore: avoid_print
-      print(e);
+
+      try {
+        await LgService(sshData).flyTo(lookAtObj);
+
+        /// sending kml to slave where we send to `balloon screen` and send the `kml balloon ` body
+        await LgService(sshData).sendKMLToSlave(
+          LgService(sshData).balloonScreen,
+          kmlBalloon.body,
+        );
+      } catch (e) {
+        // ignore: avoid_print
+        print(e);
+      }
     }
   }
 
@@ -289,6 +320,22 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
                                 ? const Center(
                                     child: CircularProgressIndicator.adaptive())
                                 : _buildLocationsWidget(snapshot),
+                          );
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: FutureBuilder<AnimalInfo>(
+                        future: _modelResponse,
+                        builder: (context, snapshot) {
+                          return AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 300),
+                            child: snapshot.connectionState ==
+                                    ConnectionState.waiting
+                                ? const Center(
+                                    child: CircularProgressIndicator.adaptive())
+                                : _buildButtonWidget(snapshot),
                           );
                         },
                       ),
@@ -369,6 +416,70 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
         ],
       ),
     );
+  }
+
+  Widget _buildButtonWidget(AsyncSnapshot<AnimalInfo?> snapshot) {
+    if (snapshot.hasError) {
+      return Text(
+        'Something went wrong Please try again later!',
+        style: TextStyle(fontSize: 20),
+      );
+    }
+
+    if (snapshot.data == null) {
+      return const Text('The response will be showed here');
+    }
+
+    final animalInfo = snapshot.data!;
+    return LgElevatedButton(
+        elevatedButtonContent: 'View Locaions',
+        buttonColor: AppColors.primary1,
+        onpressed: () async {
+          try {
+            final sshData = Provider.of<SSHprovider>(context, listen: false);
+
+            if (sshData.client != null) {
+              List<PlacemarkModel> placemarks = [];
+
+              for (int i = 0; i < animalInfo.locations.length; i++) {
+                LocationModel location = animalInfo.locations[i];
+                LookAtModel lookAtObj = LookAtModel(
+                  longitude: location.longitude,
+                  latitude: location.latitude,
+                  range: '10000',
+                  tilt: '0',
+                  altitude: 50000.1097385,
+                  heading: '0',
+                  altitudeMode: 'relativeToSeaFloor',
+                );
+                String icon =
+                    'https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/animalPin.png?raw=true';
+                PlacemarkModel placemark = PlacemarkModel(
+                    id: i.toString(),
+                    name: location.city,
+                    icon: icon,
+                    scale: 200,
+                    lookAt: lookAtObj,
+                    point: PointModel(
+                        lat: location.latitude,
+                        lng: location.longitude,
+                        altitude: 1000),
+                    description:
+                        '${animalInfo.animalName} Pin at ${location.city} , ${location.country}');
+                placemarks.add(placemark);
+              }
+              _viewPlacemarks(placemarks);
+            }
+          } catch (e) {
+            // ignore: avoid_print
+            print(e);
+          }
+        },
+        height: 50,
+        width: 250,
+        fontSize: textSize + 2,
+        textColor: AppColors.background,
+        isPoly: false);
   }
 
   Widget _buildLocationsWidget(AsyncSnapshot<AnimalInfo?> snapshot) {

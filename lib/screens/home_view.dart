@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:discoveranimals/constants.dart';
+import 'package:discoveranimals/helpers/api_key_shared_pref.dart';
 import 'package:discoveranimals/providers/animal_provider.dart';
 import 'package:discoveranimals/providers/current_view_provider.dart';
 import 'package:discoveranimals/reusable_widgets/animal_container.dart';
+import 'package:discoveranimals/reusable_widgets/dialog_builder.dart';
 import 'package:discoveranimals/reusable_widgets/lg_elevated_button.dart';
 import 'package:discoveranimals/reusable_widgets/sub_text.dart';
 import 'package:discoveranimals/reusable_widgets/text_field.dart';
@@ -103,9 +105,20 @@ class _HomeViewState extends State<HomeView> {
                     elevatedButtonContent: 'GENERATE',
                     buttonColor: AppColors.primary1,
                     onpressed: () {
-                      final animal = _userPrompt.text;
-                      currViewProvider.currentView = 'animal';
-                      animalProvider.animalChoice = animal;
+                      if (ApiKeySharedPref.getAPIKey() == '' ||
+                          ApiKeySharedPref.getAPIKey() == null) {
+                        dialogBuilder(
+                            context,
+                            'Please enter your Gemini API key to be able to continue',
+                            false,
+                            'OK', () {
+                          currViewProvider.currentView = 'settings';
+                        });
+                      } else {
+                        final animal = _userPrompt.text;
+                        currViewProvider.currentView = 'animal';
+                        animalProvider.animalChoice = animal;
+                      }
                     },
                     height: 50,
                     width: 250,
@@ -132,24 +145,36 @@ class _HomeViewState extends State<HomeView> {
                       GestureDetector(
                         onTap: () {
                           image = null;
-                          _handleUploadImageButtonTap().then((imageFile) async {
-                            if (imageFile != null) {
-                              final Uint8List? imageBytes =
-                                  await readFileAsBytes(imageFile);
+                          if (ApiKeySharedPref.getAPIKey() == '' ||
+                              ApiKeySharedPref.getAPIKey() == null) {
+                            dialogBuilder(
+                                context,
+                                'Please enter your Gemini API key to be able to continue',
+                                false,
+                                'OK', () {
+                              currViewProvider.currentView = 'settings';
+                            });
+                          } else {
+                            _handleUploadImageButtonTap()
+                                .then((imageFile) async {
+                              if (imageFile != null) {
+                                final Uint8List? imageBytes =
+                                    await readFileAsBytes(imageFile);
 
-                              if (imageBytes != null) {
-                                setState(() {
-                                  _modelResponse =
-                                      GeminiService().describeImage(imageBytes);
-                                });
-                              } else {
-                                setState(() {
-                                  _modelResponse = Future.value(
-                                      'No animal found in this image, try again!');
-                                });
+                                if (imageBytes != null) {
+                                  setState(() {
+                                    _modelResponse = GeminiService()
+                                        .describeImage(imageBytes);
+                                  });
+                                } else {
+                                  setState(() {
+                                    _modelResponse = Future.value(
+                                        'No animal found in this image, try again!');
+                                  });
+                                }
                               }
-                            }
-                          });
+                            });
+                          }
                         },
                         child: Image.file(
                           image!,
@@ -228,24 +253,36 @@ class _HomeViewState extends State<HomeView> {
                     children: [
                       GestureDetector(
                         onTap: () async {
-                          _handleUploadImageButtonTap().then((imageFile) async {
-                            if (imageFile != null) {
-                              final Uint8List? imageBytes =
-                                  await readFileAsBytes(imageFile);
+                          if (ApiKeySharedPref.getAPIKey() == '' ||
+                              ApiKeySharedPref.getAPIKey() == null) {
+                            dialogBuilder(
+                                context,
+                                'Please enter your Gemini API key to be able to continue',
+                                false,
+                                'OK', () {
+                              currViewProvider.currentView = 'settings';
+                            });
+                          } else {
+                            _handleUploadImageButtonTap()
+                                .then((imageFile) async {
+                              if (imageFile != null) {
+                                final Uint8List? imageBytes =
+                                    await readFileAsBytes(imageFile);
 
-                              if (imageBytes != null) {
-                                setState(() {
-                                  _modelResponse =
-                                      GeminiService().describeImage(imageBytes);
-                                });
-                              } else {
-                                setState(() {
-                                  _modelResponse = Future.value(
-                                      'No animal found in this image, try again!');
-                                });
+                                if (imageBytes != null) {
+                                  setState(() {
+                                    _modelResponse = GeminiService()
+                                        .describeImage(imageBytes);
+                                  });
+                                } else {
+                                  setState(() {
+                                    _modelResponse = Future.value(
+                                        'No animal found in this image, try again!');
+                                  });
+                                }
                               }
-                            }
-                          });
+                            });
+                          }
                         },
                         child: const Icon(
                           Icons.drive_folder_upload,

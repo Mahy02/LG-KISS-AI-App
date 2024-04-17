@@ -143,6 +143,7 @@ class PlacemarkModel {
     <description>
     $description
     </description>
+    ${lookAt == null ? '' : lookAt!.tag}
     <styleUrl>#$styleId</styleUrl>
      ${point?.tag}
   </Placemark>

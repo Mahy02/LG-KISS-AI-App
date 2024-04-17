@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:discoveranimals/helpers/api_key_shared_pref.dart';
 import 'package:discoveranimals/models/animal_model.dart';
 import 'package:discoveranimals/models/location_model.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -7,10 +8,16 @@ import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:mime/mime.dart';
 
 class GeminiService {
-  final model = GenerativeModel(
-      model: 'gemini-pro', apiKey: dotenv.env['GEMINI_API_KEY']!);
-  final visionModel = GenerativeModel(
-      model: 'gemini-pro-vision', apiKey: dotenv.env['GEMINI_API_KEY']!);
+  // final model = GenerativeModel(
+  //     model: 'gemini-pro', apiKey: dotenv.env['GEMINI_API_KEY']!);
+  // final visionModel = GenerativeModel(
+  //     model: 'gemini-pro-vision', apiKey: dotenv.env['GEMINI_API_KEY']!);
+
+ 
+
+  final model = GenerativeModel(model: 'gemini-pro', apiKey: ApiKeySharedPref.getAPIKey()!);
+  final visionModel =
+      GenerativeModel(model: 'gemini-pro-vision', apiKey: ApiKeySharedPref.getAPIKey()!);
 
   Future<AnimalInfo> generateAnimalInfo(String inputPrompt) async {
     String prompt = '''

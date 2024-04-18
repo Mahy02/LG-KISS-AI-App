@@ -615,25 +615,6 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
       final sshData = Provider.of<SSHprovider>(context, listen: false);
 
       if (sshData.client != null) {
-        // List<PlacemarkModel> placemarks = [];
-        // for (int i = 0; i < animalInfo.locations.length; i++) {
-        //   LocationModel location = animalInfo.locations[i];
-        //   String icon =
-        //       'https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/animalPin.png?raw=true';
-        //   PlacemarkModel placemark = PlacemarkModel(
-        //       id: i.toString(),
-        //       name: location.city,
-        //       icon: icon,
-        //       scale: 5,
-        //       point: PointModel(
-        //           lat: location.latitude,
-        //           lng: location.longitude,
-        //           altitude: 1000),
-        //       description:
-        //           '${animalInfo.animalName} Pin at ${location.city} , ${location.country}');
-        //   placemarks.add(placemark);
-        // }
-        // _viewPlacemarks(placemarks);
 
         _buildFunFactsBallon(animalInfo.animalName, animalInfo.funFacts);
       }

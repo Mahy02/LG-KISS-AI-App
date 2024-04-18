@@ -1,6 +1,5 @@
 import 'package:discoveranimals/constants.dart';
 import 'package:discoveranimals/providers/ssh_provider.dart';
-import 'package:discoveranimals/reusable_widgets/dialog_builder.dart';
 import 'package:discoveranimals/services/lg_functionalities.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -118,66 +117,3 @@ class _OrbitDialogState extends State<OrbitDialog> {
   }
 }
 
-
-// class OrbitDialog extends StatefulWidget {
-//   const OrbitDialog({super.key});
-
-//   @override
-//   _OrbitDialogState createState() => _OrbitDialogState();
-// }
-
-// class _OrbitDialogState extends State<OrbitDialog> {
-//   bool _isOrbiting = false;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AlertDialog(
-//       title: Text('Orbit Dialog'),
-//       content: _isOrbiting
-//           ? Column(
-//               mainAxisSize: MainAxisSize.min,
-//               children: [
-//                 CircularProgressIndicator(),
-//                 SizedBox(height: 20),
-//                 Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                   children: [
-//                     ElevatedButton(
-//                       onPressed: () {
-//                         setState(() {
-//                           _isOrbiting = false;
-//                         });
-//                         Navigator.of(context).pop();
-//                       },
-//                       child: Text('Stop'),
-//                     ),
-//                     ElevatedButton(
-//                       onPressed: () {
-//                         // Your logic for continuing orbiting
-//                       },
-//                       child: Text('Play'),
-//                     ),
-//                   ],
-//                 ),
-//               ],
-//             )
-//           : Text('Do you want to orbit?'),
-//       actions: [
-//         ElevatedButton(
-//           onPressed: () {
-//             setState(() {
-//               _isOrbiting = true;
-//             });
-//           },
-//           child: Text('Yes'),
-//         ),
-//         ElevatedButton(
-//           onPressed: () {
-//             Navigator.of(context).pop();
-//           },
-//           child: Text('No'),
-//         ),
-//       ],
-//     );
-//   }
-// }

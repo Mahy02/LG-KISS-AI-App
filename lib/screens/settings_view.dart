@@ -196,14 +196,14 @@ class _SettingsViewState extends State<SettingsView> {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 20.0, top: 50),
-            child: SubText(
-              subTextContent: 'Theme Settings',
-              fontSize: textSize + 4,
-              isCentered: true,
-            ),
-          ),
+          // const Padding(
+          //   padding: EdgeInsets.only(left: 20.0, top: 50),
+          //   child: SubText(
+          //     subTextContent: 'Theme Settings',
+          //     fontSize: textSize + 4,
+          //     isCentered: true,
+          //   ),
+          // ),
         ],
       ),
     );

@@ -9,7 +9,7 @@ class ApiKeySharedPref {
 
   // Setters
 
-  /// Sets the IP address for the lg session.
+  /// Sets the IP address for the aoiKey session.
   static Future<void> setAPIKey(String apiKey) async =>
       await _prefs?.setString(_apiKey, apiKey);
 
@@ -17,13 +17,13 @@ class ApiKeySharedPref {
 
   // Getters
 
-  /// Retrieves the saved IP address from the lg session.
+  /// Retrieves the saved IP address from the apiKey session.
   static String? getAPIKey() => _prefs?.getString(_apiKey);
 
 
   // Removers
 
-  /// Removes the saved IP address from the lg session.
+  /// Removes the saved IP address from the apiKey session.
   static Future<void> removeAPIKey() async => await _prefs?.remove(_apiKey);
 
 

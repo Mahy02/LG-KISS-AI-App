@@ -1,5 +1,4 @@
 import 'package:discoveranimals/constants.dart';
-import 'package:discoveranimals/helpers/api_key_shared_pref.dart';
 import 'package:discoveranimals/providers/current_view_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

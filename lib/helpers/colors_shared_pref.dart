@@ -10,17 +10,14 @@ class ColorsSharedPref {
 
   // Setters
 
-  /// Sets the IP address for the lg session.
   static Future<void> setAPIKey(String apiKey) async =>
       await _prefs?.setString(_color, apiKey);
 
   // Getters
 
-  /// Retrieves the saved IP address from the lg session.
   static String? getAPIKey() => _prefs?.getString(_color);
 
   // Removers
 
-  /// Removes the saved IP address from the lg session.
   static Future<void> removeAPIKey() async => await _prefs?.remove(_color);
 }

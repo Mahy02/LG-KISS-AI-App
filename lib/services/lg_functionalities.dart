@@ -107,8 +107,6 @@ fi
     }
 
     for (var i = screenAmount; i > 1; i--) {
-      // print('reboot');
-      // print(i);
       try {
         await _sshData
             .execute('sshpass -p $pw ssh -t lg$i "echo $pw | sudo -S reboot"');

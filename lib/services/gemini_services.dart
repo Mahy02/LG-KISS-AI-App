@@ -8,14 +8,15 @@ import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:mime/mime.dart';
 
 class GeminiService {
-  final model = GenerativeModel(
-      model: 'gemini-pro', apiKey: dotenv.env['GEMINI_API_KEY']!);
-  final visionModel = GenerativeModel(
-      model: 'gemini-pro-vision', apiKey: dotenv.env['GEMINI_API_KEY']!);
+  // final model = GenerativeModel(
+  //     model: 'gemini-pro', apiKey: dotenv.env['GEMINI_API_KEY']!);
+  // final visionModel = GenerativeModel(
+  //     model: 'gemini-pro-vision', apiKey: dotenv.env['GEMINI_API_KEY']!);
 
-  // final model = GenerativeModel(model: 'gemini-pro', apiKey: ApiKeySharedPref.getAPIKey()!);
-  // final visionModel =
-  //     GenerativeModel(model: 'gemini-pro-vision', apiKey: ApiKeySharedPref.getAPIKey()!);
+  final model = GenerativeModel(
+      model: 'gemini-pro', apiKey: ApiKeySharedPref.getAPIKey()!);
+  final visionModel = GenerativeModel(
+      model: 'gemini-pro-vision', apiKey: ApiKeySharedPref.getAPIKey()!);
 
   Future<AnimalInfo> generateAnimalInfo(String inputPrompt) async {
     String prompt = '''

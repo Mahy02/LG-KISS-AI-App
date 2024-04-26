@@ -95,6 +95,48 @@ Gemini model is known for its multimodal capabilities, which means it can handle
 - Orbiting around a certain location on the LG rig.
 
 ## App Screenshots <a name="screenshots"></a>
+
+<br>
+
+### Home Page where the user can enter a prompt, upload an image or choose one of the AI suggestions:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146287.png" alt="ss" width="500" style="margin-right: 20px;">
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146472.png" alt="ss" width="500" style="margin-right: 20px;">
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146771.png" alt="ss" width="500" style="margin-right: 20px;">
+
+### Model Response on the app, and on the LG rig:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146569.png" alt="ss" width="500" style="margin-right: 20px;">
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot%202024-04-26%20184941.png" alt="ss" width="800" style="margin-right: 20px;">
+
+### Animals Placemarks sent through kml file:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot%202024-04-26%20185108.png" alt="ss" width="500" style="margin-right: 20px;">
+
+### Fly to a location on the LG and orbit around it:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot%202024-04-26%20185023.png" alt="ss" width="800" style="margin-right: 20px;">
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146594.png" alt="ss" width="500" style="margin-right: 20px;">
+
+### Asking the model anything about the animal and the response can be shown on both the app and the LG Rig:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146709.png" alt="ss" width="500" style="margin-right: 20px;">
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot%202024-04-26%20185201.png" alt="ss" width="500" style="margin-right: 20px;">
+
+### Connection Manager Screen to connect to the LG:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146339.png" alt="ss" width="500" style="margin-right: 20px;">
+
+### LG Tasks screen for rebooting, relaunching, shutting down, and clearing the kml:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146361.png" alt="ss" width="500" style="margin-right: 20px;">
+
+### Settings page where you can add the model API key, save it, edit it or delete it:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146380.png" alt="ss" width="500" style="margin-right: 20px;">
+
+
+
 ## Prerequisites & Usage for running the APK <a name="runningapk"></a>
 
 - Need to have an Android Phone or Tablet with a minimum Android version "Android 11"

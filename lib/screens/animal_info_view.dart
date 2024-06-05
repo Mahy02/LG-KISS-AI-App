@@ -433,7 +433,7 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
 
     final animalInfo = snapshot.data!;
     return LgElevatedButton(
-        elevatedButtonContent: 'View Locaions',
+        elevatedButtonContent: 'View Locations',
         buttonColor: AppColors.primary1,
         onpressed: () async {
           try {

@@ -1,10 +1,10 @@
-import 'package:discoveranimals/reusable_widgets/conncetion_indicator.dart';
+
 import 'package:discoveranimals/reusable_widgets/dialog_builder.dart';
 import 'package:discoveranimals/reusable_widgets/lg_elevated_button.dart';
 import 'package:discoveranimals/reusable_widgets/sub_text.dart';
 import 'package:discoveranimals/reusable_widgets/text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 import 'package:provider/provider.dart';
 

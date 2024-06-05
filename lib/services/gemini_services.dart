@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:discoveranimals/helpers/api_key_shared_pref.dart';
 import 'package:discoveranimals/models/animal_model.dart';
 import 'package:discoveranimals/models/location_model.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:mime/mime.dart';
 

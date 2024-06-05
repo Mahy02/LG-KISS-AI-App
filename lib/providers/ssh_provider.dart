@@ -33,47 +33,12 @@ class SSHprovider extends ChangeNotifier {
   /// Property that defines the number of LG screens
   int? _numberOfScreens = LgConnectionSharedPref.getScreenAmount();
 
-  /// Property that defines the SSH client 
+  /// Property that defines the SSH client
   SSHClient? _client;
 
   /// reconnects with the client again every 30 seconds while the app is running with given `ssh` info
   Future<String?> reconnectClient(SSHModel ssh, BuildContext context) async {
-    String? result = '';
-    try {
-      final socket = await SSHSocket.connect(ssh.host, ssh.port,
-          timeout: const Duration(seconds: 36000000));
-      String? password;
-
-      _client = SSHClient(
-        socket,
-        onPasswordRequest: () {
-          password = ssh.passwordOrKey;
-          return password;
-        },
-        username: ssh.username,
-        keepAliveInterval: const Duration(seconds: 36000000),
-      );
-
-     
-    } catch (e) {
-      result = 'fail';
-    
-    }
-   
-    Connectionprovider connection =
-        Provider.of<Connectionprovider>(context, listen: false);
-    if (result == 'fail') {
-      connection.isConnected = false;
-    } else {
-      connection.isConnected = true;
-    }
-
-    return result;
-  }
-
-  /// Sets a client with the given [ssh] info.
-  Future<String?> setClient(SSHModel ssh) async {
-    String result = "";
+    String result = '';
 
     try {
       final socket = await SSHSocket.connect(ssh.host, ssh.port,
@@ -103,12 +68,56 @@ class SSHprovider extends ChangeNotifier {
         // If the client is not authenticated, indicate a failed connection
         throw Exception('SSH authentication failed');
       }
-
-    
     } catch (e) {
       result = "Failed to connect to the SSH server: $e";
     }
 
+    Connectionprovider connection =
+        Provider.of<Connectionprovider>(context, listen: false);
+    if (result == '') {
+      connection.isConnected = true;
+    } else {
+      connection.isConnected = false;
+    }
+
+    return result;
+  }
+
+  /// Sets a client with the given [ssh] info.
+  Future<String?> setClient(SSHModel ssh) async {
+    String result = '';
+
+    try {
+      final socket = await SSHSocket.connect(ssh.host, ssh.port,
+          timeout: const Duration(seconds: 36000000));
+      String? password;
+      bool isAuthenticated = false;
+
+      _client = SSHClient(
+        socket,
+        onPasswordRequest: () {
+          password = ssh.passwordOrKey;
+
+          return password;
+        },
+        username: ssh.username,
+        onAuthenticated: () {
+          isAuthenticated = true;
+        },
+        keepAliveInterval: const Duration(seconds: 36000000),
+      );
+
+      /// Add a delay before checking isAuthenticated
+      await Future.delayed(const Duration(seconds: 10));
+
+      if (isAuthenticated) {
+      } else {
+        // If the client is not authenticated, indicate a failed connection
+        throw Exception('SSH authentication failed');
+      }
+    } catch (e) {
+      result = "Failed to connect to the SSH server: $e";
+    }
     return result;
   }
 
@@ -172,7 +181,6 @@ class SSHprovider extends ChangeNotifier {
     _passwordOrKey = LgConnectionSharedPref.getPassword() ?? '';
     _port = int.parse(LgConnectionSharedPref.getPort() ?? '22');
     _numberOfScreens = LgConnectionSharedPref.getScreenAmount();
-
 
     notifyListeners();
     return result;

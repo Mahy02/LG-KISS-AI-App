@@ -1,3 +1,4 @@
+import 'package:discoveranimals/providers/connection_provider.dart';
 import 'package:discoveranimals/reusable_widgets/dialog_builder.dart';
 import 'package:discoveranimals/reusable_widgets/lg_elevated_button.dart';
 import 'package:discoveranimals/reusable_widgets/sub_text.dart';
@@ -48,8 +49,11 @@ class _LGTasksViewState extends State<LGTasksView> {
                   final sshData =
                       Provider.of<SSHprovider>(context, listen: false);
 
+                  Connectionprovider connection =
+                      Provider.of<Connectionprovider>(context, listen: false);
+
                   ///checking the connection status first
-                  if (sshData.client != null) {
+                  if (sshData.client != null && connection.isConnected) {
                     /// calling `reboot` from `LGService`
 
                     dialogBuilder(context, 'Are you sure you want to Reboot?',
@@ -84,8 +88,11 @@ class _LGTasksViewState extends State<LGTasksView> {
                   final sshData =
                       Provider.of<SSHprovider>(context, listen: false);
 
+                  Connectionprovider connection =
+                      Provider.of<Connectionprovider>(context, listen: false);
+
                   ///checking the connection status first
-                  if (sshData.client != null) {
+                  if (sshData.client != null && connection.isConnected) {
                     //warning message first
 
                     dialogBuilder(
@@ -133,8 +140,11 @@ class _LGTasksViewState extends State<LGTasksView> {
                   final sshData =
                       Provider.of<SSHprovider>(context, listen: false);
 
+                  Connectionprovider connection =
+                      Provider.of<Connectionprovider>(context, listen: false);
+
                   ///checking the connection status first
-                  if (sshData.client != null) {
+                  if (sshData.client != null && connection.isConnected) {
                     /// calling `reboot` from `LGService`
 
                     dialogBuilder(context, 'Are you sure you want to Relaunch?',
@@ -167,8 +177,11 @@ class _LGTasksViewState extends State<LGTasksView> {
                   final sshData =
                       Provider.of<SSHprovider>(context, listen: false);
 
+                  Connectionprovider connection =
+                      Provider.of<Connectionprovider>(context, listen: false);
+
                   ///checking the connection status first
-                  if (sshData.client != null) {
+                  if (sshData.client != null && connection.isConnected) {
                     LgService(sshData).clearKml();
                   } else {
                     dialogBuilder(

@@ -35,8 +35,8 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                     color: AppColors.background)),
             Consumer<Connectionprovider>(builder: (context, connection, _) {
               return ConnectionIndicator(
-                isConnected: connection.isConnected,
-              );
+                  // isConnected: connection.isConnected,
+                  );
             }),
           ],
         ));

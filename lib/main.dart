@@ -54,10 +54,13 @@ void main() async {
           port: int.parse(LgConnectionSharedPref.getPort() ?? '22'),
         ),
         navigatorKey.currentContext!);
-    if (result == 'fail' || result != '') {
-      connection.isConnected = false;
-    } else {
+    if (result == '') {
+      print('result: $result');
+      print('inside true in reconnect');
       connection.isConnected = true;
+    } else {
+      connection.isConnected = false;
+      print('inside false in reconnect');
     }
   });
 }

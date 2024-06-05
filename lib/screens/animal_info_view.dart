@@ -8,6 +8,7 @@ import 'package:discoveranimals/models/kml/orbit_model.dart';
 import 'package:discoveranimals/models/kml/placemark_model.dart';
 import 'package:discoveranimals/models/kml/point_model.dart';
 import 'package:discoveranimals/models/location_model.dart';
+import 'package:discoveranimals/providers/connection_provider.dart';
 import 'package:discoveranimals/providers/ssh_provider.dart';
 import 'package:discoveranimals/reusable_widgets/dialog_builder.dart';
 import 'package:discoveranimals/reusable_widgets/lg_elevated_button.dart';
@@ -437,8 +438,9 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
         onpressed: () async {
           try {
             final sshData = Provider.of<SSHprovider>(context, listen: false);
-
-            if (sshData.client != null) {
+            Connectionprovider connection =
+                Provider.of<Connectionprovider>(context, listen: false);
+            if (sshData.client != null && connection.isConnected) {
               List<PlacemarkModel> placemarks = [];
 
               for (int i = 0; i < animalInfo.locations.length; i++) {
@@ -469,6 +471,14 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
                 placemarks.add(placemark);
               }
               _viewPlacemarks(placemarks);
+            } else {
+              dialogBuilder(
+                  context,
+                  'NOT connected to LG !! \n Please Connect to LG',
+                  true,
+                  'OK',
+                  null,
+                  () {});
             }
           } catch (e) {
             // ignore: avoid_print
@@ -502,19 +512,20 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
           onTap: () async {
             //To Do: show dialogue orbit
 
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return OrbitDialog(location: location.city);
-              },
-            );
-
             final sshData = Provider.of<SSHprovider>(context, listen: false);
+            Connectionprovider connection =
+                Provider.of<Connectionprovider>(context, listen: false);
             final double longitude = location.longitude;
             final double latitude = location.latitude;
 
             ///checking the connection status first
-            if (sshData.client != null) {
+            if (sshData.client != null && connection.isConnected) {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return OrbitDialog(location: location.city);
+                },
+              );
               //await LgService(sshData).clearKml();
               _buildLocationBallon(
                   animalInfo.animalName, location.city, location.country);
@@ -554,7 +565,8 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
                   'NOT connected to LG !! \n Please Connect to LG',
                   true,
                   'OK',
-                  null, () {});
+                  null,
+                  () {});
             }
           },
           child: Container(
@@ -613,9 +625,10 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
     final animalInfo = snapshot.data!;
     try {
       final sshData = Provider.of<SSHprovider>(context, listen: false);
+      Connectionprovider connection =
+          Provider.of<Connectionprovider>(context, listen: false);
 
-      if (sshData.client != null) {
-
+      if (sshData.client != null && connection.isConnected) {
         _buildFunFactsBallon(animalInfo.animalName, animalInfo.funFacts);
       }
     } catch (e) {
@@ -626,8 +639,9 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
       onTap: () async {
         try {
           final sshData = Provider.of<SSHprovider>(context, listen: false);
-
-          if (sshData.client != null) {
+          Connectionprovider connection =
+              Provider.of<Connectionprovider>(context, listen: false);
+          if (sshData.client != null && connection.isConnected) {
             _buildFunFactsBallon(animalInfo.animalName, animalInfo.funFacts);
           }
         } catch (e) {
@@ -675,8 +689,9 @@ class _AnimalInfoViewState extends State<AnimalInfoView> {
 
     try {
       final sshData = Provider.of<SSHprovider>(context, listen: false);
-
-      if (sshData.client != null) {
+      Connectionprovider connection =
+          Provider.of<Connectionprovider>(context, listen: false);
+      if (sshData.client != null && connection.isConnected) {
         _buildAnswersBallon(widget.animal, snapshot.data!, _userPrompt.text);
       }
     } catch (e) {

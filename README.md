@@ -15,7 +15,8 @@ My app was about discovering animals world wide and allowing the users to ask th
 4. [Tha app's main features](#mainFeatures)
 5. [App Screenshots](#screenshots)
 6. [Prerequisites & Usage for running the APK](#runningapk)
-7. [Developers Guide](#developersguide)
+7. [Prerequisites & Usage For running the code from the source](#runningsourcecode)
+8. [Developers Guide](#developersguide)
 
 ## What is Liquid Galaxy? <a name="LiquidGalaxy"></a>
 
@@ -95,6 +96,48 @@ Gemini model is known for its multimodal capabilities, which means it can handle
 - Orbiting around a certain location on the LG rig.
 
 ## App Screenshots <a name="screenshots"></a>
+
+<br>
+
+### Home Page where the user can enter a prompt, upload an image or choose one of the AI suggestions:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146287.png" alt="ss" width="500" style="margin-right: 20px;">
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146472.png" alt="ss" width="500" style="margin-right: 20px;">
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146771.png" alt="ss" width="500" style="margin-right: 20px;">
+
+### Model Response on the app, and on the LG rig:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146569.png" alt="ss" width="500" style="margin-right: 20px;">
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot%202024-04-26%20184941.png" alt="ss" width="800" style="margin-right: 20px;">
+
+### Animals Placemarks sent through kml file:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot%202024-04-26%20185108.png" alt="ss" width="500" style="margin-right: 20px;">
+
+### Fly to a location on the LG and orbit around it:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot%202024-04-26%20185023.png" alt="ss" width="800" style="margin-right: 20px;">
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146594.png" alt="ss" width="500" style="margin-right: 20px;">
+
+### Asking the model anything about the animal and the response can be shown on both the app and the LG Rig:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146709.png" alt="ss" width="500" style="margin-right: 20px;">
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot%202024-04-26%20185201.png" alt="ss" width="500" style="margin-right: 20px;">
+
+### Connection Manager Screen to connect to the LG:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146339.png" alt="ss" width="500" style="margin-right: 20px;">
+
+### LG Tasks screen for rebooting, relaunching, shutting down, and clearing the kml:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146361.png" alt="ss" width="500" style="margin-right: 20px;">
+
+### Settings page where you can add the model API key, save it, edit it or delete it:
+
+<img src="https://github.com/Mahy02/LG-KISS-AI-App/blob/main/assets/images/screenshots/Screenshot_1714146380.png" alt="ss" width="500" style="margin-right: 20px;">
+
+
+
 ## Prerequisites & Usage for running the APK <a name="runningapk"></a>
 
 - Need to have an Android Phone or Tablet with a minimum Android version "Android 11"
@@ -106,6 +149,72 @@ Gemini model is known for its multimodal capabilities, which means it can handle
 Now you can Enjoy the app :) 
 
 <br>
+
+## Prerequisites & Usage For running the code from the source <a name="runningsourcecode"></a>
+
+<br>
+
+### Prerequisites:
+
+<br>
+
+- Visual Studio Code or Android Studio or another IDE that supports flutter development
+- Flutter SDK
+- Android SDK
+- Android device or emulator
+- Git
+
+<br>
+
+Documentation on how to set up flutter SDK and its environment can be found [here](https://flutter.dev/docs/get-started/install)
+
+<br>
+
+> _Step 1: Clone the Repository_
+
+The full code is located in this GitHub repository. To clone the project via terminal use the command:
+
+```bash
+git clone https://github.com/Mahy02/LG-KISS-AI-App.git 
+```
+
+<br>
+
+>  _Step 2: Run the code_
+
+Open a terminal and navigate to the project root directory. First you need to install all the packages by running the following command:
+
+```bash
+flutter pub get
+```
+<br>
+
+After successfully installing the packages, make sure you have a device connected, either a real android phone or an emulator. You can run flutter doctor to check out the connected devices and if all environment is correct
+
+```bash
+flutter doctor
+```
+<br>
+
+Since dart is moving up versions to offer null safety, some packages that are being used still haven’t migrated to the new null safety policies, so we need to run the project with the following command
+
+```bash
+flutter run --no-sound-null-safety
+```
+<br>
+
+>  _Step 3: env file_
+
+In the project root directory, you will find a .env.example file, rename this to .env and replace 'YOUR_GEMINI_API_KEY' with your own API key for development purposes.
+
+<br>
+
+If you followed all the steps till now you have your app up and running.
+
+<br>
+
+Enjoy the app  :)  !!
+
 
 ## Developers Guide <a name="developersguide"></a>
 

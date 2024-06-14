@@ -47,6 +47,12 @@ dependencies:
   mime: ^1.0.5
   image_picker: ^1.0.8
   geocoding: ^3.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app_logo.png"
 
 dev_dependencies:
   flutter_lints: ^3.0.2
@@ -89,6 +95,7 @@ flutter:
       - assets/images/shutdown.png
       - assets/images/animalsBalloon.png
       - assets/images/animalPin.png
+      - assets/images/LG_AI.webp
       - .env
 
 

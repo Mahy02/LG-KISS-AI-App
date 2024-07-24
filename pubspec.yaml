@@ -47,17 +47,20 @@ dependencies:
   mime: ^1.0.5
   image_picker: ^1.0.8
   geocoding: ^3.0.0
-  flutter_launcher_icons: ^0.13.1
+  
 
-flutter_launcher_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/images/app_logo.png"
+
 
 dev_dependencies:
   flutter_lints: ^3.0.2
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app_logo_small.jpg"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
